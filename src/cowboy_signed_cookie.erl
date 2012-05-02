@@ -48,4 +48,4 @@ create_hmac(Value) ->
     {ok, Secret} = application:get_env(app_secret),
     C1 = crypto:hmac_init(sha, Secret),
     C2 = crypto:hmac_update(C1, Value),
-    crypto:hmac_final(C2).
+    base64:encode(crypto:hmac_final(C2)).
